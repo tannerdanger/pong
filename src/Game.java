@@ -15,14 +15,14 @@ public class Game {
     static Map<Direction, KeyEvent> keys = new HashMap<>();//TODO: Hashmap
     Timer timer;
 
-    double ballX = 0;
-    double ballY = 0;
+    int ballX = 300;
+    int ballY = 300;
     boolean ballDirection = false;
 
-    double p1x = 0;
-    double p1y = 0;
-    double p2x = 0;
-    double p2y = 0;
+    int p1x = 30;
+    int p1y = 350;
+    int p2x = 650;
+    int p2y = 350;
     double incline = -0.5;
 
     View view;
@@ -34,30 +34,22 @@ public class Game {
 
     public void start(){
 
-        paddle1 = new Paddle(1, this);
-        paddle2 = new Paddle(2, this);
-        ball = new Ball();
-        ballX = 300;
-        ballY = 300;
-        p1x = 30;
-        p1y = 350;
-        p2x = 650;
-        p1y = 350;
-
-
+        paddle1 = new Paddle(1, this, p1x, p1y);
+        paddle2 = new Paddle(2, this, p2x, p2y);
+        ball = new Ball(ballX, ballY);
 
 
 
         timer = new Timer(2, new ActionListener(){
            public void actionPerformed(ActionEvent arg0){
-               update(view.getBounds());
-               draw(view);
+               update();
+               draw(view.getBounds());
            }
         });
         timer.start();
     }
 
-    public void update(Rectangle bpimds){
+    public void update(){
         if(paddle1.getScore() > 7){
             JOptionPane.showMessageDialog(view, "PLAYER 1 WINS");
             reset();
@@ -65,6 +57,10 @@ public class Game {
             JOptionPane.showMessageDialog(view, "PLAYER 2 WINS");
             reset();
         }
+
+
+
+
 
         setDirection(ballDirection, incline);
         //bounce(); //TODO reset directoin
@@ -97,7 +93,7 @@ public class Game {
         ball.reset();
     }
 
-    public void draw(){
-        view.repaint();
+    public void draw(Rectangle bounds){
+        view.repaint(bounds);
     }
 }

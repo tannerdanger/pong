@@ -11,6 +11,7 @@ public class Launcher {
         Game myGame = new Game(view);
 
         frame.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+        frame.getContentPane().add(view);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

@@ -13,17 +13,25 @@ public class View extends JPanel {
 
     }
 
-    @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
-        //if(myModel.getEntities()!)
-    }
 
     public void setGame(Game game){
         this.myGame = game;
     }
 
-    public void paintComponent(Graphics g){
-
+    @Override
+    public Rectangle getBounds(){
+        return bounds;
     }
+
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        myGame.ball.draw(g);
+        myGame.paddle1.draw(g);
+        myGame.paddle2.draw(g);
+    }
+
+
+
+
 }

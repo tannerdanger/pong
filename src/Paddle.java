@@ -12,9 +12,11 @@ public class Paddle {
 
     Point myLocation = new Point(0,0);
 
-    public Paddle(int theNum, Game theGame){
+    public Paddle(int theNum, Game theGame, int theX, int theY){
         paddleNum = theNum;
         myGame = theGame;
+        myX = theX;
+        myY = theY;
     }
 
     public void createBindings(){
@@ -44,6 +46,9 @@ public class Paddle {
         myScore = 0;
     }
 
-
+    public void draw(Graphics g){
+        g.setColor(Color.GRAY);
+        g.fillRect(myX, myY, PADDLE_WIDTH, PADDLE_HEIGHT);
+    }
 
 }
