@@ -15,6 +15,8 @@ public class Launcher {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        frame.setTitle("Tanner's Pong");
+
         myGame.start();
     }
 }
