@@ -12,7 +12,11 @@ public class Game {
     Paddle paddle2;
     Ball ball;
 
-    static Map<Direction, KeyEvent> keys = new HashMap<>();//TODO: Hashmap
+    int PLAYERSPEED = 4;
+
+    boolean playerUP = false;
+    boolean playerDOWN = false;
+
     Timer timer;
 
     int ballX = 300;
@@ -21,7 +25,7 @@ public class Game {
 
     int p1x = 30;
     int p1y = 350;
-    int p2x = 650;
+    int p2x = 670;
     int p2y = 350;
     double incline = -0.5;
 
@@ -30,6 +34,7 @@ public class Game {
     public Game(View view){
         this.view = view;
         view.setGame(this);
+        registerInput();
     }
 
     public void start(){
@@ -56,6 +61,19 @@ public class Game {
         }else if(paddle2.getScore() > 7){
             JOptionPane.showMessageDialog(view, "PLAYER 2 WINS");
             reset();
+        }else{
+            if(playerUP){
+                paddle2.myY -= PLAYERSPEED;
+            }else if(playerDOWN){
+                paddle2.myY += PLAYERSPEED;
+            }
+            if(paddle2.myY <= 50){
+                paddle2.myY = 50;
+            }else if(paddle2.myY >= 570){
+                paddle2.myY = 570;
+            }
+//            playerDOWN = false;
+//            playerUP = false;
         }
 
 
@@ -70,11 +88,6 @@ public class Game {
         // TODO Add functionality for changing ball location...
         // TODO Don't forget to use collision detection!!!
 
-        if(keys.containsKey(Direction.UP)){
-            p2y -=2;
-        }else if(keys.containsKey(Direction.DOWN)){
-            p2y +=2;
-        }
 
         paddle1.setLocation(new Point((int)p1x, (int)p1y));
         paddle2.setLocation(new Point((int)p2x, (int)p2y));
@@ -91,6 +104,10 @@ public class Game {
         paddle1.reset();
         paddle2.reset();
         ball.reset();
+    }
+
+    public void registerInput(){
+
     }
 
     public void draw(Rectangle bounds){
