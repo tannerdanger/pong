@@ -74,6 +74,10 @@ public class Game {
             }
 //            playerDOWN = false;
 //            playerUP = false;
+            if(!ball.isServable){
+                ball.myX += ball.SPEED;
+                ball.myY += ball.SPEED;
+            }
         }
 
 

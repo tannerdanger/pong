@@ -6,6 +6,7 @@ public class Ball {
     int myX = 0, myY = 0;
     int myHeight = 20, myWidth = 20;
     boolean isServable = true;
+    int SPEED = 5;
 
     public Ball(int theX, int theY){
         myX = theX;

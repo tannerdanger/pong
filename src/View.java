@@ -34,6 +34,10 @@ public class View extends JPanel implements KeyListener{
         myGame.ball.draw(g);
         myGame.paddle1.draw(g);
         myGame.paddle2.draw(g);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", 1, 20));
+        g.drawString(myGame.paddle1.getScore() + " : " + myGame.paddle2.getScore(), 350, 50);
     }
 
     @Override
@@ -53,7 +57,7 @@ public class View extends JPanel implements KeyListener{
             myGame.playerUP = false;
         }
         if(e.getKeyCode() == KeyEvent.VK_SPACE && myGame.ball.isServable){
-
+            myGame.ball.isServable = false;
         }
     }
 
