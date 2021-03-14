@@ -1,5 +1,8 @@
 import javax.swing.*;
 
+/**
+ * Launches the pong game and sets the size of the frame
+ */
 public class Launcher {
 
     private static int WINDOW_HEIGHT = 750;

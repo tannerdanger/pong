@@ -3,31 +3,37 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Creates the JPanel that the game plays on. Implements key listener to listen for input from player
+ */
 public class View extends JPanel implements KeyListener{
-
+    /**
+     * Reference to game object
+     */
     Game myGame;
-    Rectangle bounds;
 
+    /**
+     * Creates the game view object
+     */
     public View(){
         setBackground(Color.BLACK);
-        bounds = new Rectangle(0,0,705,670);
-
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
-
     }
 
-
+    /**
+     * Sets the game reference
+     * @param game the game object
+     */
     public void setGame(Game game){
         this.myGame = game;
     }
 
-    @Override
-    public Rectangle getBounds(){
-        return bounds;
-    }
-
+    /**
+     * Draws the components fo the game
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -36,8 +42,8 @@ public class View extends JPanel implements KeyListener{
         myGame.paddle2.draw(g);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", 1, 20));
-        g.drawString(myGame.paddle1.getScore() + " : " + myGame.paddle2.getScore(), 350, 50);
+        g.setFont(new Font("Arial", 1, 50));
+        g.drawString(myGame.paddle1.getScore() + " : " + myGame.paddle2.getScore(), 300, 50);
     }
 
     @Override
@@ -45,6 +51,10 @@ public class View extends JPanel implements KeyListener{
 
     }
 
+    /**
+     * Checks for user input and handles proper keypresses
+     * @param e the key event to check
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()== KeyEvent.VK_W
@@ -61,6 +71,10 @@ public class View extends JPanel implements KeyListener{
         }
     }
 
+    /**
+     * When key released, paddle stops moving
+     * @param e
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode()== KeyEvent.VK_W

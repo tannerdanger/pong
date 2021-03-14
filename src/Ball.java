@@ -1,31 +1,49 @@
 import java.awt.*;
 
 public class Ball {
-
-    Point myLocation = new Point(0,0);
+    /**
+     * Ball x and y locations
+     */
     int myX = 0, myY = 0;
+    /**
+     * Default h and w of ball
+     */
     int myHeight = 20, myWidth = 20;
+    /**
+     * Is ball waiting to be served?
+     */
     boolean isServable = true;
+    /**
+     * Default speed of the ball
+     */
     int SPEED = 5;
 
+    /**
+     * Creates the ball object
+     * @param theX x location of ball to start
+     * @param theY y location of ball to start
+     */
     public Ball(int theX, int theY){
         myX = theX;
         myY = theY;
     }
 
-
+    /**
+     * Resets ball location
+     */
     void reset(){
         myY = 300;
         myX = 300;
         isServable = true;
         SPEED = -SPEED; //change direction
-       // myScore = 0;
     }
 
-    public void setLocation(Point p){
-        myLocation = p;
-    }
 
+    /**
+     * Checks if the ball collides with a paddle
+     * @param paddle the paddle to check collision against
+     * @return boolean if collides or not
+     */
     public boolean collidesWith(Paddle paddle){
 
         if(myX == paddle.getX()
@@ -44,6 +62,10 @@ public class Ball {
         return myY;
     }
 
+    /**
+     * Draws the ball blue
+     * @param g the graphics object
+     */
     public void draw(Graphics g){
         g.setColor(Color.BLUE);
         g.fillOval(myX, myY, myHeight, myWidth);
