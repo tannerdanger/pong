@@ -41,9 +41,21 @@ public class Paddle {
         return myScore;
     }
 
+    public void scored(){
+        myScore++;
+    }
+
     void reset(){
         myY = 350;
         myScore = 0;
+    }
+
+    public int getY(){
+        return myY;
+    }
+
+    public int getX(){
+        return myX;
     }
 
     public void draw(Graphics g){

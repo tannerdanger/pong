@@ -61,7 +61,7 @@ public class Game {
         }else if(paddle2.getScore() > 7){
             JOptionPane.showMessageDialog(view, "PLAYER 2 WINS");
             reset();
-        }else{
+        }else{ //game isn't over, process game
             if(playerUP){
                 paddle2.myY -= PLAYERSPEED;
             }else if(playerDOWN){
@@ -72,11 +72,36 @@ public class Game {
             }else if(paddle2.myY >= 570){
                 paddle2.myY = 570;
             }
-//            playerDOWN = false;
-//            playerUP = false;
             if(!ball.isServable){
                 ball.myX += ball.SPEED;
-                ball.myY += ball.SPEED;
+                setDirection(ballDirection, incline);
+
+                if(ball.collidesWith(paddle2)){
+                    ball.SPEED =- ball.SPEED;
+                }
+
+                if(ball.collidesWith(paddle1)){
+                    ball.SPEED =- ball.SPEED;
+                }
+
+                if(ball.getX() < paddle1.getX()){
+                    paddle2.scored();
+                    ball.reset();
+                }
+                if(ball.getX() > paddle2.getX()){
+                    paddle1.scored();
+                    ball.reset();
+                }
+                //TODO: Collision with paddle
+//                if(ball.myX == paddle2.myX
+//                && ball.myY >= paddle2.myY){
+//                    ball.SPEED =- ball.SPEED;
+//
+//                }
+                //TODO: Collision with paddle
+//                if(ball.myX == paddle1.myX){
+//                    ball.SPEED =- ball.SPEED;
+//                }
             }
         }
 
@@ -84,13 +109,12 @@ public class Game {
 
 
 
-        setDirection(ballDirection, incline);
         //bounce(); //TODO reset directoin
 
         // TODO add AI action (p1)
+        //processAI();
 
         // TODO Add functionality for changing ball location...
-        // TODO Don't forget to use collision detection!!!
 
 
         paddle1.setLocation(new Point((int)p1x, (int)p1y));
@@ -100,7 +124,7 @@ public class Game {
     }
 
     public void setDirection(boolean Xdir, double inc){
-        ballY += inc;
+        ball.myY += inc;
 
     }
 
