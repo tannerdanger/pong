@@ -34,7 +34,6 @@ public class Game {
     public Game(View view){
         this.view = view;
         view.setGame(this);
-        registerInput();
     }
 
     public void start(){
@@ -64,8 +63,15 @@ public class Game {
         }else{ //game isn't over, process game
             if(playerUP){
                 paddle2.myY -= PLAYERSPEED;
+
+                //TODO Remove below line. Used for testing
+                paddle1.myY -= PLAYERSPEED;
+
             }else if(playerDOWN){
                 paddle2.myY += PLAYERSPEED;
+
+                //TODO Remove below line. Used for testing
+                paddle1.myY += PLAYERSPEED;
             }
             if(paddle2.myY <= 50){
                 paddle2.myY = 50;
@@ -74,7 +80,17 @@ public class Game {
             }
             if(!ball.isServable){
                 ball.myX += ball.SPEED;
-                setDirection(ballDirection, incline);
+
+                //bounce ball off edge of screen
+                if(ball.getY() == 50){
+                    incline = -incline;
+                    ball.myY += incline;
+                }else if(ball.getY() == 700){
+                    incline = -incline;
+                    ball.myY += incline;
+                }else{
+                    ball.myY += incline;
+                }
 
                 if(ball.collidesWith(paddle2)){
                     ball.SPEED =- ball.SPEED;
@@ -92,16 +108,9 @@ public class Game {
                     paddle1.scored();
                     ball.reset();
                 }
+
                 //TODO: Collision with paddle
-//                if(ball.myX == paddle2.myX
-//                && ball.myY >= paddle2.myY){
-//                    ball.SPEED =- ball.SPEED;
-//
-//                }
-                //TODO: Collision with paddle
-//                if(ball.myX == paddle1.myX){
-//                    ball.SPEED =- ball.SPEED;
-//                }
+
             }
         }
 
@@ -123,19 +132,10 @@ public class Game {
 
     }
 
-    public void setDirection(boolean Xdir, double inc){
-        ball.myY += inc;
-
-    }
-
     public void reset(){
         paddle1.reset();
         paddle2.reset();
         ball.reset();
-    }
-
-    public void registerInput(){
-
     }
 
     public void draw(Rectangle bounds){

@@ -19,12 +19,6 @@ public class Paddle {
         myY = theY;
     }
 
-    public void createBindings(){
-        if(paddleNum == 1){
-            //view.addKeyBindings("up.pressed", KeyEvent.VK_W)
-        }
-    }
-
     public Dimension getSize(){
         return new Dimension(PADDLE_WIDTH, PADDLE_HEIGHT);
     }
