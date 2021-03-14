@@ -44,7 +44,7 @@ public class Game {
     /**
      * Y incline the ball is moving at
      */
-    double incline = -0.5;
+    double incline = 1;
     /**
      * Reference to the game view
      */
