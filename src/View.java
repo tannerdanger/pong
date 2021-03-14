@@ -52,6 +52,9 @@ public class View extends JPanel implements KeyListener{
             myGame.playerDOWN = true;
             myGame.playerUP = false;
         }
+        if(e.getKeyCode() == KeyEvent.VK_SPACE && myGame.ball.isServable){
+
+        }
     }
 
     @Override

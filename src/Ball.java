@@ -5,6 +5,7 @@ public class Ball {
     Point myLocation = new Point(0,0);
     int myX = 0, myY = 0;
     int myHeight = 20, myWidth = 20;
+    boolean isServable = true;
 
     public Ball(int theX, int theY){
         myX = theX;
